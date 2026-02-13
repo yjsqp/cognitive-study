@@ -160,17 +160,39 @@ function startRecoveryTimer() {
     recoverySection.classList.remove("hidden");
     let time = 300;
 
-    let interval = setInterval(() => {
+    // create or reuse a skip button for the recovery timer
+    let skipBtn = document.getElementById("skipRecoveryBtn");
+    if (!skipBtn) {
+        skipBtn = document.createElement("button");
+        skipBtn.id = "skipRecoveryBtn";
+        skipBtn.textContent = "Skip";
+        recoverySection.appendChild(skipBtn);
+    } else {
+        skipBtn.classList.remove("hidden");
+    }
+
+    let intervalId = setInterval(() => {
         let minutes = Math.floor(time / 60);
         let seconds = time % 60;
         timer.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
         time--;
 
         if (time < 0) {
-            clearInterval(interval);
+            clearInterval(intervalId);
+            if (skipBtn && skipBtn.parentNode) skipBtn.parentNode.removeChild(skipBtn);
             startRecoveryTest();
         }
     }, 1000);
+
+    // clicking skip should cancel the timer and start the recovery test
+    const onSkip = () => {
+        clearInterval(intervalId);
+        if (skipBtn && skipBtn.parentNode) skipBtn.parentNode.removeChild(skipBtn);
+        startRecoveryTest();
+    };
+
+    // ensure we don't attach multiple handlers
+    skipBtn.onclick = onSkip;
 }
 
 function showResults() {
