@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cognitive Stimuli Study</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Cognitive Stimuli Experiment</h1>
+
+    <!-- PARTICIPANT FORM -->
+    <div id="formSection" class="card">
+        <h2>Participant Information</h2>
+        <input type="number" id="age" placeholder="Age"><br>
+        <input type="text" id="gender" placeholder="Gender"><br>
+        <input type="number" id="caffeine" placeholder="Caffeine (cups/day)"><br>
+        <input type="number" id="sleep" placeholder="Hours of sleep"><br>
+        <input type="number" id="screenTime" placeholder="Screen time (hours)"><br>
+        <button onclick="showInstructions()">Begin Experiment</button>
+    </div>
+
+    <!-- INSTRUCTIONS -->
+    <div id="instructionsSection" class="card hidden">
+        <h2>Instructions</h2>
+        <p>
+            Look at the CENTER arrow only.<br><br>
+            Press <strong>F</strong> if the arrow points LEFT.<br>
+            Press <strong>J</strong> if the arrow points RIGHT.<br><br>
+            Respond as FAST and ACCURATE as possible.
+        </p>
+        <button onclick="startPractice()">Start Practice (5 Trials)</button>
+    </div>
+
+    <!-- TASK SECTION -->
+    <div id="taskSection" class="card hidden">
+        <div class="taskHeader">
+            <h2 id="taskTitle"></h2>
+            <div id="counter"></div>
+        </div>
+        <div id="stimulus"></div>
+    </div>
+
+    <!-- PLAYLIST SECTION (KEPT EXACTLY AS YOU WANTED) -->
+    <div id="playlistSection" class="card hidden">
+        <h2>Stimulus Exposure</h2>
+
+        <iframe width="600" height="340"
+            src="https://www.youtube.com/playlist?list=PLP_1XwSHt55uK_h6bTkttB80SmlwiDvpI"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+
+        <br><br>
+        <button onclick="startPostTest()">Continue to Post-Test</button>
+    </div>
+
+    <!-- RECOVERY TIMER -->
+    <div id="recoverySection" class="card hidden">
+        <h2>Recovery Period (5 Minutes)</h2>
+        <h1 id="timer">5:00</h1>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="resultsSection" class="card hidden">
+        <h2>Final Results</h2>
+        <div id="results"></div>
+        <button onclick="downloadResults()">Download Results (CSV)</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
